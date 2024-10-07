@@ -1,46 +1,41 @@
-# User Registry Application
+# Aplicação de registro de usuários
 
 Este projeto é uma aplicação de registro de usuários, construída com Java e Spring Boot, que utiliza PostgreSQL como banco de dados.
+### Executar a aplicação backend 
 
-## Pré-requisitos
+Pré-requisitos
 
-- Docker e Docker Compose instalados na sua máquina.
+ -  Java 17
+ -  Maven
+ -  PostgreSQL
 
-## Estrutura do Docker
+- Executar os comandos maven :
 
-### Dockerfile
+ mvn clean install
+   
+ mvn spring-boot:run
 
-O `Dockerfile` utilizado para construir a aplicação é o seguinte:
+# Para acessar a API da aplicação:
+http://127.0.0.1:8080/user-registry/swagger-ui/index.html
 
-```dockerfile
-FROM eclipse-temurin:17-jdk-alpine as build
-WORKDIR /app
-COPY target/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
-
-
-
+![API do Sistema](dir_/nova.png)
 
 
+### Aternative para executar a aplicação backend com Docker
+
+Pré-requisitos
+
+- Docker instalados na sua máquina.
 
 
-```O arquivo docker-compose.yml para orquestrar a aplicação e o banco de dados
+- Executar o docker-compose file :
+
+   docker-compose up --build
+
+```
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:15  
-    container_name: postgres_db  
-    environment:
-      POSTGRES_USER: postgres         
-      POSTGRES_PASSWORD: postgres 
-      POSTGRES_DB: postgres       
-    ports:
-      - "3003:5432"  
-    volumes:
-      - postgres_data:/var/lib/postgresql/data  
-
   user-registry:
     build:
       context: .
@@ -48,12 +43,25 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_APPLICATION_NAME: user-registry
-      SERVER_SERVLET_CONTEXT_PATH: /user-registry
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_APPLICATION_NAME=user-registry
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "3003:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
     driver: local
+
+```
