@@ -1,8 +1,12 @@
 package br.com.jsn.userregistry.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LoginDto {
 
+    @JsonProperty("Informe seu email")
     private String email;
+    @JsonProperty("Informe sua senha")
     private String senha;
 
     public LoginDto(String email , String senha){

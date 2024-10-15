@@ -1,11 +1,18 @@
 package br.com.jsn.userregistry.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UsuarioDto {
     
 
+    @JsonIgnore 
     private Integer id;
-    private String nome;
+    @JsonProperty("Informe seu nome")
+    private String nome ;
+    @JsonProperty("Informe seu email")
     private String email;
+    @JsonProperty("Informe sua senha")
     private String senha;
 
     public UsuarioDto(){}
