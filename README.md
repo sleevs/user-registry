@@ -8,8 +8,11 @@ Pré-requisitos
  -  Java 17
  -  Maven
  -  PostgreSQL
+ -  [ **Frontend**: Desenvolvido com Angular.](https://github.com/sleevs/ui-app) 
 
-- Executar os comandos maven :
+
+
+### Executar os comandos maven :
 
  mvn clean install
    
@@ -17,11 +20,10 @@ Pré-requisitos
 
 
 
-# [Repositório da interface da aplicação](https://github.com/sleevs/ui-app) 
 
 
 
-# Para acessar a API da aplicação:
+### Para acessar a API da aplicação:
 http://127.0.0.1:8080/user-registry/swagger-ui/index.html
 
 ![API do Sistema](dir_/nova.png)
